@@ -26,9 +26,6 @@ class OAuth2LoginSuccessHandler(
         if (user != null) {
             val token = jwtService.generateToken(user)
             val encodedToken = URLEncoder.encode(token, "UTF-8")
-            println(token)
-            println(encodedToken)
-
             response.sendRedirect("http://localhost:3000/after-login?token=$encodedToken")
         } else {
             response.sendRedirect("http://localhost:3000/error")
