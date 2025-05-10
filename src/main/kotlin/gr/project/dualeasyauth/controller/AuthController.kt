@@ -17,7 +17,6 @@ class AuthController(
 ) {
     @GetMapping("/token")
     fun getToken(authentication: Authentication): ResponseEntity<Map<String, String>> {
-        println(authentication.name)
         val user = userRepository.findByEmail(authentication.name) ?: return ResponseEntity.status(401).build()
         val token = jwtService.generateToken(user)
         return ResponseEntity.ok(mapOf("token" to token))
